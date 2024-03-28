@@ -1,0 +1,9 @@
+@media screen and (max-width: 480px) {
+    .budget {
+        display: flex;
+        flex-direction: column;
+        width: 20rem;
+        height: 20rem;
+        gap: 2rem;
+    }
+}
