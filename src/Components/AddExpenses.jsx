@@ -4,22 +4,23 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const AddExpenses = () => {
-    const { expenseData, setExpenseData, setSetTotalAmount } = useContext(UserContext);
+    const { expenseData, setExpenseData, setTotalAmount } = useContext(UserContext);
 
-    const tittleInputRef = useRef('');
-    const priceRef = useRef(0);
+    const tittleInputRef = useRef(null);
+    const priceRef = useRef(null);
 
 
     const handleClick = () => {
 
-        let newExpense = {
-            tittle: tittleInputRef.current.value,
-            amount: Number(priceRef.current.value)
-        }
-        setExpenseData([...expenseData, newExpense])
+        const tittle = tittleInputRef.current.value;
+        const amount = Number(priceRef.current.value);
+
+
+        setExpenseData([...expenseData, { tittle, amount }])
         toast.success('Item added successfully!!')
 
-        setSetTotalAmount(prev => prev + newExpense.amount);
+        setTotalAmount(prev => prev + amount);
+
         tittleInputRef.current.value = ""
         priceRef.current.value = "";
 

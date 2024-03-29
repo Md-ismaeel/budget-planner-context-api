@@ -6,22 +6,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export const ShowExpenses = () => {
 
-    const { expenseData, setExpenseData } = useContext(UserContext);
+    const { expenseData, setExpenseData, setTotalAmount } = useContext(UserContext);
 
-    useEffect(() => {
-        const savedData = localStorage.getItem('expenseData');
-        if (savedData && JSON.parse(savedData).length) {
-            setExpenseData(JSON.parse(savedData));
-        }
-    }, []);
 
-    useEffect(() => {
-        localStorage.setItem('expenseData', JSON.stringify(expenseData));
-    }, [expenseData]);
 
-    const removeFromCart = (index) => {
+    const removeFromCart = (index, amount) => {
         let filteredData = expenseData.filter((_, i) => i !== index)
         setExpenseData(filteredData)
+        setTotalAmount(prev => prev - amount)
         toast.warn('Item removed from cart!!')
     }
 
@@ -38,7 +30,7 @@ export const ShowExpenses = () => {
 
                     <p className='flex py-2 px-4 justify-center items-center'>
                         <span className='text-2xl'>{item.amount}</span>
-                        <span onClick={() => removeFromCart(index)} className='ml-4 text-3xl cursor-pointer hover:text-orange-400'><IoMdCloseCircle /></span>
+                        <span onClick={() => removeFromCart(index, item.amount)} className='ml-4 text-3xl cursor-pointer hover:text-orange-400'><IoMdCloseCircle /></span>
                     </p>
 
                 </div>

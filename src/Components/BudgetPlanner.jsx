@@ -2,9 +2,8 @@ import React, { useContext } from 'react'
 import { UserContext } from '../Context/Context'
 
 export const BudgetPlanner = () => {
-    const { budget, totalAmount } = useContext(UserContext);
-    console.log(budget);
-    console.log(totalAmount);
+    const { budget, totalAmount} = useContext(UserContext);
+    
     return (
         <div className='w-full p-4'>
 
@@ -16,7 +15,9 @@ export const BudgetPlanner = () => {
 
                 <h2 className='text-2xl font-semibold min-h-12 flex justify-center items-center w-1/5 bg-slate-200 text-green-600 rounded-md'>Remaining: Rs.{budget - totalAmount}</h2>
 
-                <h2 className='text-2xl font-semibold min-h-12 flex justify-center items-center w-1/5 bg-cyan-200 text-cyan-800 rounded-md'>Sped so far.{totalAmount}</h2>
+                <h2 className='text-2xl font-semibold min-h-12 flex justify-center items-center w-1/5 bg-cyan-200 text-cyan-800 rounded-md'>Sped so far.
+                {totalAmount}
+                </h2>
 
             </div>
         </div>
